@@ -13,7 +13,6 @@ bool tuner = false;
 
 String paramiter = "";
 
-String array_comandos[25];
 String array_paramiters[6];
 
 //-------Servo---------
