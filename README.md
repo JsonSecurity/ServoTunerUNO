@@ -16,7 +16,7 @@ z
 
 ### Data reception
 Data is received one at a time, a “key” (z) is used to indicate the start and end of the command.
-<br>
+<br><br>
 <img src="https://github.com/JsonSecurity/Images/blob/main/all/Servo%20Tuner%20Arduino.png" width="700" >
 
 ### Servo calibration
