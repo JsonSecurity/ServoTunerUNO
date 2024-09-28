@@ -18,7 +18,8 @@ z
 Data is received one at a time, a “key” (z) is used to indicate the start and end of the command.
 <br><br>
 <img src="https://github.com/JsonSecurity/Images/blob/main/all/Servo%20Tuner%20Arduino.png" width="900" >
-
+<br><br>
+This image is when I was debugging the code.
 ### Servo calibration
 After parcear the information is sent to the function where the servo movement is performed.<br><br>
 <img src="https://github.com/JsonSecurity/Images/blob/main/all/Servo%20Tuner%20Arduino%202.png" width="900" >
