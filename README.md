@@ -4,6 +4,10 @@ This is a C++ (Arduino) script to calibrate servo motors by sending various para
 ### Aplication (Flutter)
 - Link: not yet available
 
+### Scheme 
+
+<img src="Servotuner.png"/>
+
 ### Reception format
 The data is sent all in a row but only the char variable enters the function so it goes one by one as shown below.
 ```
