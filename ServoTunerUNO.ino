@@ -4,9 +4,8 @@
 //---------BT--------------
 SoftwareSerial miBT(10, 11);
 
-//--Variables-de-control--
 char DATO = 0;
-//--------Calibracion------
+
 int indice = 0;
 int contador = 0;
 bool tuner = false;
@@ -15,38 +14,22 @@ String paramiter = "";
 
 String array_paramiters[6];
 
-//-------Servo---------
 Servo servo_one;
 
 void setup() {
-  //-----------------------------bluetooth----------------------------
   miBT.begin(38400);
-  //--------------------------MonitorSerial---------------------------
   Serial.begin(9600);
-
-  // Pin servo 
-  servo_one.attach(8, 450, 6750);
-  delay(100);
 }
 
 void SetCalibrateServo(uint8_t n_servo, int pMin, int pMax, int angulo) {
-  // n_servo para pin (8) se debe definir los otros pines o usar el modulo controlador de motores
-  servo_one.attach(8, pMin, pMax);
+  servo_one.attach(n_servo, pMin, pMax);
   servo_one.write(angulo);
 }
 
 void CalibrarServoMotor() {
-  // ternario para detectar el inicio y final 'z'
-
-  /*if (DATO == 'z') {
-    tuner = !tuner;
-  }*/
-
   tuner = (DATO == 'z') ? !tuner : tuner;
-
   //Serial.println(String(tuner));
-  
-  // formating all variables
+
   if (tuner) {      
       if (DATO != ':') {
         paramiter += String(DATO);
