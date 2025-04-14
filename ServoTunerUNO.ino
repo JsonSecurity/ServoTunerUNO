@@ -1,12 +1,17 @@
 #include <Servo.h>
 #include <SoftwareSerial.h>
+#include <Adafruit_PWMServoDriver.h>
 
 //---------BT--------------
 SoftwareSerial miBT(10, 11);
 
+// Adafruit_PWMServoDriver
+Adafruit_PWMServoDriver servo_placa = Adafruit_PWMServoDriver(0x40);
+
 char DATO = 0;
 
 int indice = 0;
+int duty1;
 int contador = 0;
 bool tuner = false;
 
@@ -15,15 +20,32 @@ String paramiter = "";
 String array_paramiters[6];
 
 Servo servo_one;
+Servo servo_two;
 
 void setup() {
   miBT.begin(38400);
   Serial.begin(9600);
+
+  // PWMServoDriver
+  servo_placa.begin();
+  servo_placa.setPWMFreq(60);  // Frecuencia PWM de 60Hz o T=16,66ms
 }
 
-void SetCalibrateServo(uint8_t n_servo, int pMin, int pMax, int angulo) {
-  servo_one.attach(n_servo, pMin, pMax);
-  servo_one.write(angulo);
+void SetCalibrateServo(uint8_t n_servo1, int angulo1, int pMin, int pMax) {
+  //duty1 = map(angulo1, 0, 180, 140, 620);
+
+  // Servo 17 y 18 no se incluye en modulo PWM servo driver
+  if (n_servo1 == 17) {
+    servo_one.attach(8, pMin, pMax);
+    servo_one.write(angulo1);
+  } else if (n_servo1 == 18) {  //590 6650
+    servo_two.attach(9, pMin, pMax);
+    servo_two.write(angulo1);
+  // Servos que si cuentan con PWM servo driver
+  } else {
+    duty1 = map(angulo1, 0, 180, pMin, pMax);
+    servo_placa.setPWM(n_servo1, 0, duty1);
+  }
 }
 
 void CalibrarServoMotor() {
